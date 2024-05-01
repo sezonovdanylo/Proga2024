@@ -7,6 +7,7 @@ class Figure:
 
 
 
+
     def povorot(self):
         a = self.coordinats
         for i in range(0, 4):
