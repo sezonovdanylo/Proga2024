@@ -6,6 +6,7 @@ class Figure:
 
 
 
+
     def povorot(self):
         a = self.coordinats
         for i in range(0, 4):
@@ -16,10 +17,11 @@ class Figure:
 
 
 
+if __name__ == '__main__':
 
-a = [[4,1], [4,2], [4,3], [3,2]]
-Fig = Figure(a, 5)
-print(Fig.povorot().coordinats)
+    a = [[4,1], [4,2], [4,3], [3,2]]
+    Fig = Figure(a, 5)
+    print(Fig.povorot().coordinats)
 
 
 
