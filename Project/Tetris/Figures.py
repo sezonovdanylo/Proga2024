@@ -48,4 +48,4 @@ print(Matrics.matrics)
 
 
 Matrics.ochistka()
-print(Matrics.matrics[3][4])
+print(Matrics.matrics[3][5])
