@@ -47,29 +47,3 @@ class Matrics():
 
 
 
-Matrics = Matrics()
-figure = Figure(f7, 5)
-
-print(Matrics.matrics)
-Matrics.create(figure)
-print(Matrics.centralfigure.coordinats)
-print(Matrics.matrics)
-print(Matrics.coordinats)
-
-
-
-Matrics.centralpovorot()
-print(Matrics.centralfigure.coordinats)
-print(Matrics.matrics)
-print(Matrics.coordinats)
-
-for i in range(4):
-    Matrics.left()
-    print(Matrics.coordinats)
-for i in range(11):
-    Matrics.right()
-    print(Matrics.coordinats)
-#
-#
-# Matrics.ochistka()
-# print(Matrics.matrics[3][5])
