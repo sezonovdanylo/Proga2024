@@ -7,6 +7,7 @@ class Matrics():
     def __init__(self):
         self.zeromatrics = [[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]
         self.matrics = self.zeromatrics
+        self.fallenfigures=[]
     def randomcreate(self):
         n = [randint(1, 9) / 10, randint(1, 9) / 10, randint(1, 9) / 10]
         number = randint(0, 6)
@@ -15,13 +16,35 @@ class Matrics():
     def create(self, figure):
 
         self.centralfigure = figure
+        self.placing()
+    def placing(self):
         fig = self.centralfigure
         self.coordinats = []
+        self.fakematrics = []
+
+
         for el in self.centralfigure.coordinats:
-            x = el[0]
-            y = el[1]
-            self.matrics[x-1][y+2+fig.mooved]=[0,self.centralfigure.color]
-            self.coordinats.append([x-1,y+2+fig.mooved])
+            x = el[0] - 1
+            y = el[1] + 2
+            self.centralfigure.matricscoordinats.append([x,y])
+            x = x
+            y = y+fig.mooved
+
+            self.fakematrics.append([x,y])
+            if y<0:
+                self.centralfigure.right()
+                self.placing()
+            elif y>0:
+                self.centralfigure.left()
+                self.placing()
+            else:
+                for el in self.fakematrics:
+                    self.matrics[el[0]][el[1]] = [0, fig.color]
+
+    def deletefigure(self,figure):
+        for coordinats in figure.matricscoordinats:
+            self.matrics[]
+
     def ochistka(self):
         self.matrics = self.zeromatrics
     def ifempty(self):
@@ -41,6 +64,17 @@ class Matrics():
         self.centralfigure.right()
         self.ochistka()
         self.create(self.centralfigure)
+    def figurefall(self):
+        self.fallenfigures.append(self.centralfigure)
+
+    def fall(self):
+
+        for figure in self.fallenfigures:
+            for coordinats in figure.coordinats:
+                coordinats[0]+=1
+            self.create(figure)
+
+
 
 
 

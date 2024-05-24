@@ -41,6 +41,7 @@ class Figureseven(Figure):
         a = figures[number]
         self.gradius0  = a
         self.coordinats = a
+        self.matricscoordinats = []
         self.gradius90 = self.povorotLST()
         self.gradius180 = self.povorotLST()
         self.gradius270 = self.povorotLST()
