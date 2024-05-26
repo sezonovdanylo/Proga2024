@@ -43,9 +43,17 @@ class Matrics():
                     self.matrics[el[0]][el[1]] = [0, fig.color]
 
     def ochistka(self):
-        self.matrics = self.zeromatrics
+        for i in range(0,4):
+            for k in range(0,9):
+                self.matrics[i][k]=[0,0]
     def ifempty(self):
-        return self.matrics == self.zeromatrics
+        empty = True
+        for i in range(0,4):
+            for k in range(0,9):
+                if self.matrics[i][k]!=[0,0]:
+                    empty=False
+        return empty
+
 
     def centralpovorot(self):
         self.centralfigure.povorot()
@@ -79,16 +87,22 @@ class Matrics():
                 elif self.matrics[self.fallenfigures[fig].matricscoordinats[i][0]][self.fallenfigures[fig].matricscoordinats[i][1]]!=[0,0]:
                     stopfigure = True
                     if stopfigure:
-                        if fdc[i][0]<4
+                        if fdc[i][0]<4:
+                            self.end=True
+                fcc.append(self.fallenfigures[fig].matricscoordinats[i])
+            if stopfigure:
+                del self.fallenfigures[fig]
+            else:
+                for delcoordinats in fdc:
+                    self.matrics[delcoordinats[0]][delcoordinats[1]]=[0,0]
+                for chncoordinats in fcc:
+                    self.matrics[chncoordinats[0]][chncoordinats[1]]=[0,color]
+    def iffullrow(self):
+        pass
+    def endgame(self):
+        pass
 
-                fcc.append(changematricscoordinats)
-            # self.fallenfigures.remove(figure)
-            # break
-            if len(fcc)!=4:
-                break
-            for delcoordinat in fdc:
-                self.matrics[delcoordinat[0]][delcoordinat[1]]=[0,0]
-            for
+
 
 
 
