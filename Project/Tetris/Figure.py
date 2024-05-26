@@ -50,6 +50,7 @@ class Figureseven(Figure):
         self.gradiuslst = [self.gradius0, self.gradius90, self.gradius180, self.gradius270]
         self.numberlst = 0
         self.coordinats = pochatok
+        self.matricscoordinats=[]
 
 
     def left(self):

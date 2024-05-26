@@ -8,6 +8,8 @@ class Matrics():
         self.zeromatrics = [[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]
         self.matrics = self.zeromatrics
         self.fallenfigures=[]
+        self.score=0
+        self.end=False
     def randomcreate(self):
         n = [randint(1, 9) / 10, randint(1, 9) / 10, randint(1, 9) / 10]
         number = randint(0, 6)
@@ -33,16 +35,12 @@ class Matrics():
             if y<0:
                 self.centralfigure.right()
                 self.placing()
-            elif y>0:
+            elif y>9:
                 self.centralfigure.left()
                 self.placing()
             else:
                 for el in self.fakematrics:
                     self.matrics[el[0]][el[1]] = [0, fig.color]
-
-    # def deletefigure(self,figure):
-    #     for coordinats in figure.matricscoordinats:
-    #         self.matrics[]
 
     def ochistka(self):
         self.matrics = self.zeromatrics
@@ -68,18 +66,29 @@ class Matrics():
 
     def fall(self):
 
-        for figure in self.fallenfigures:
+        for fig in range(0,len(self.fallenfigures)):
             fdc = []                                           #Future Delete Coordinats
             fcc = []                                           #Future Change Coordinats
+            color = self.fallenfigures[fig].color
+            stopfigure = False
+            for i in range(0,4):
+                fdc.append(self.fallenfigures[fig].matricscoordinats[i])
+                self.fallenfigures[fig].matricscoordinats[i][0]+=1
+                if self.fallenfigures[fig].matricscoordinats[i][0]>23:
+                    stopfigure = True
+                elif self.matrics[self.fallenfigures[fig].matricscoordinats[i][0]][self.fallenfigures[fig].matricscoordinats[i][1]]!=[0,0]:
+                    stopfigure = True
+                    if stopfigure:
+                        if fdc[i][0]<4
 
-            for coordinats in figure.coordinats:
-                fdc.append(coordinats)
-                changecoordinats = coordinats
-                changecoordinats[0]+=1
-
-
-
-
+                fcc.append(changematricscoordinats)
+            # self.fallenfigures.remove(figure)
+            # break
+            if len(fcc)!=4:
+                break
+            for delcoordinat in fdc:
+                self.matrics[delcoordinat[0]][delcoordinat[1]]=[0,0]
+            for
 
 
 
