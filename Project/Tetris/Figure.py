@@ -38,16 +38,16 @@ class Figureseven(Figure):
         f6 = [[3, 3], [4, 3], [4, 2], [4, 1]]
         f7 = [[4, 1], [4, 2], [4, 3], [4, 4]]
         figures = [f1, f2, f3, f4, f5, f6, f7]
-        a = figures[number]
-        self.gradius0  = a
+        pochatok = figures[number]
+        self.gradius0= pochatok
         self.coordinats = a
-        self.matricscoordinats = []
         self.gradius90 = self.povorotLST()
         self.gradius180 = self.povorotLST()
         self.gradius270 = self.povorotLST()
         self.gradiuslst = [self.gradius0, self.gradius90, self.gradius180, self.gradius270]
         self.numberlst = 0
-        self.coordinats = a
+        self.coordinats = pochatok
+
 
     def left(self):
         self.mooved -=1

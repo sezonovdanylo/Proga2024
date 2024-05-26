@@ -19,7 +19,6 @@ class Matrics():
         self.placing()
     def placing(self):
         fig = self.centralfigure
-        self.coordinats = []
         self.fakematrics = []
 
 
@@ -41,9 +40,9 @@ class Matrics():
                 for el in self.fakematrics:
                     self.matrics[el[0]][el[1]] = [0, fig.color]
 
-    def deletefigure(self,figure):
-        for coordinats in figure.matricscoordinats:
-            self.matrics[]
+    # def deletefigure(self,figure):
+    #     for coordinats in figure.matricscoordinats:
+    #         self.matrics[]
 
     def ochistka(self):
         self.matrics = self.zeromatrics
@@ -70,9 +69,14 @@ class Matrics():
     def fall(self):
 
         for figure in self.fallenfigures:
+            fdc = []                                           #Future Delete Coordinats
+            fcc = []                                           #Future Change Coordinats
+
             for coordinats in figure.coordinats:
-                coordinats[0]+=1
-            self.create(figure)
+                fdc.append(coordinats)
+                changecoordinats = coordinats
+                changecoordinats[0]+=1
+
 
 
 
