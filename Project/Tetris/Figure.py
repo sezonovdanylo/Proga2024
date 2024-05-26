@@ -40,10 +40,13 @@ class Figureseven(Figure):
         figures = [f1, f2, f3, f4, f5, f6, f7]
         pochatok = figures[number]
         self.gradius0= pochatok
-        self.coordinats = a
-        self.gradius90 = self.povorotLST()
-        self.gradius180 = self.povorotLST()
-        self.gradius270 = self.povorotLST()
+        self.coordinats = pochatok
+        self.povorotLST()
+        self.gradius90 = self.coordinats
+        self.povorotLST()
+        self.gradius180 = self.coordinats
+        self.povorotLST()
+        self.gradius270 = self.coordinats
         self.gradiuslst = [self.gradius0, self.gradius90, self.gradius180, self.gradius270]
         self.numberlst = 0
         self.coordinats = pochatok
