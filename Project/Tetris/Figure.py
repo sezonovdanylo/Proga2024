@@ -51,6 +51,7 @@ class Figureseven(Figure):
         self.numberlst = 0
         self.coordinats = pochatok
         self.matricscoordinats=[]
+        self.futurematricscoordinats=[]
 
 
     def left(self):
