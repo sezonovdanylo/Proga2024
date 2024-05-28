@@ -6,11 +6,11 @@ from random import randint
 class Matrics():
     def __init__(self):
         self.zeromatrics = [[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]
-        self.matrics = self.zeromatrics
-        self.notfallenmatrics = self.zeromatrics
-        self.fallenfigures=[]
-        self.score=0
-        self.end=False
+        self.matrics = [[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]
+        self.notfallenmatrics = [[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]
+        self.fallenfigures = []
+        self.score = 0
+        self.end = False
     def randomcreate(self):
         n = [randint(1, 9) / 10, randint(1, 9) / 10, randint(1, 9) / 10]
         number = randint(0, 6)
@@ -20,31 +20,23 @@ class Matrics():
 
         self.centralfigure = figure
         self.placing()
+
     def placing(self):
-        fig = self.centralfigure
         self.fakematrics = []
-
-
-        for el in self.centralfigure.coordinats:
-            x = el[0] - 1
-            y = el[1] + 2
-            self.centralfigure.matricscoordinats.append([x,y])
-            a = x+1
-            b = y
-            self.centralfigure.futurematricscoordinats.append([a,b])
-            x = x
-            y = y+fig.mooved
-
+        for i in range(0, 4):
+            x = self.centralfigure.coordinats[i][0] - 1
+            y = self.centralfigure.coordinats[i][1] + 2 + self.centralfigure.mooved
+            self.centralfigure.matricscoordinats[i] = [x,y]
             self.fakematrics.append([x,y])
             if y<0:
-                self.centralfigure.right()
+                self.centralfigure.mooved+=1
                 self.placing()
-            elif y>9:
-                self.centralfigure.left()
+            if y>9:
+                self.centralfigure.mooved-=1
                 self.placing()
             else:
                 for el in self.fakematrics:
-                    self.matrics[el[0]][el[1]] = [0, fig.color]
+                    self.matrics[el[0]][el[1]] = [0, self.centralfigure.color]
 
     def ochistka(self):
         for i in range(0,4):
@@ -57,8 +49,6 @@ class Matrics():
                 if self.matrics[i][k]!=[0,0]:
                     empty=False
         return empty
-
-
     def centralpovorot(self):
         self.centralfigure.povorot()
         self.ochistka()
@@ -67,95 +57,55 @@ class Matrics():
     def left(self):
         self.centralfigure.left()
         self.ochistka()
-        self.create(self.centralfigure)
+        self.placing
 
     def right(self):
         self.centralfigure.right()
         self.ochistka()
-        self.create(self.centralfigure)
+        self.placing()
     def figurefall(self):
-        self.fallenfigures.append(self.centralfigure)
+        coordinatslst = []
+        colorlst = []
+        for coordinats in self.centralfigure.matricscoordinats:
+            coordinatslst.append(coordinats)
+        for color in self.centralfigure.color:
+            colorlst.append(color)
+        self.fallenfigures.append([coordinatslst, colorlst])
+
+
+
+
 
     def fall(self):
-        for fig in range(0,len(self.fallenfigures)):
-            fdc = []                                           #Future Delete Coordinats
-            fcc = []                                           #Future Change Coordinats
-            color = self.fallenfigures[fig].color
+        for i in range(0, len(self.fallenfigures)):
+            coordinats = self.fallenfigures[i][0]
+            color = self.fallenfigures[i][1]
+            fdc = coordinats
+            fcc = []
             stopfigure = False
+            for cord in coordinats:
+                x = cord[0]+1
+                y = cord[1]
+                fcc.append([x,y])
 
-
-            # for i in range(0, 4):
-            #     deleted = self.fallenfigures[fig].matricscoordinats[i]
-            #     changed = self.fallenfigures[fig].futurematricscoordinats[i]
-            #     firstdeleted = deleted[0]
-            #     seconddeleted = deleted[1]
-            #     firstchanged = changed[0]
-            #     secondchanged = changed[1]
-            #     if
-
-
-            for coordinats in self.fallenfigures[fig].matricscoordinats:
-                fdc.append(coordinats)
-            for futurecoordinats in self.fallenfigures[fig].futurematricscoordinats:
-                fcc.append(futurecoordinats)
-                stopfigure = futurecoordinats[0]>23
-                if not stopfigure:
-                    stopfigure =not self.notfallenmatrics[futurecoordinats[0]][futurecoordinats[1]]==[0,0]
+                if x > 23:
+                    stopfigure = True
+                elif self.notfallenmatrics[x][y][1] != 0:
+                    stopfigure = True
             if stopfigure:
-                for delcoordinats in fdc:
-                    self.notfallenmatrics[delcoordinats[0]][delcoordinats[1]]=[0,color]
-                del self.fallenfigures[fig]
+                for cordi in coordinats:
+                    self.notfallenmatrics[cordi[0]][cordi[1]] = [0, color]
+                self.fallenfigures.pop(i)
             else:
-                for delcoordinats in fdc:
-                    self.matrics[delcoordinats[0]][delcoordinats[1]]=[0,0]
-                i = 0
-                for chncoordinats in fcc:
-                    self.matrics[chncoordinats[0]][chncoordinats[1]]=[0,color]
-                    self.fallenfigures[fig].matricscoordinats[i] = chncoordinats
-                    self.fallenfigures[fig].futurematricscoordinats[i] = [chncoordinats[0]+1,chncoordinats[1]]
-                    i+=1
+                for el in fdc:
+                    self.matrics[el[0]][el[1]] = [0, 0]
+                for ell in fcc:
+                    self.matrics[ell[0]][ell[1]] = [0, color]
+                self.fallenfigures[i][0] = fcc
 
 
 
-
-
-
-
-
-
-
-
-
-    # def fall(self):
-    #
-    #     for fig in range(0,len(self.fallenfigures)):
-    #         fdc = []                                           #Future Delete Coordinats
-    #         fcc = []                                           #Future Change Coordinats
-    #         color = self.fallenfigures[fig].color
-    #         stopfigure = False
-    #         for i in range(0,4):
-    #             delete = self.fallenfigures[fig].matricscoordinats[i]
-    #             fdc.append(delete)
-    #             self.fallenfigures[fig].matricscoordinats[i][0]+=1
-    #             if self.fallenfigures[fig].matricscoordinats[i][0]>23:
-    #                 stopfigure = True
-    #             elif self.matrics[self.fallenfigures[fig].matricscoordinats[i][0]][self.fallenfigures[fig].matricscoordinats[i][1]]!=[0,0]:
-    #                 stopfigure = True
-    #                 if stopfigure:
-    #                     if fdc[i][0]<4:
-    #                         self.end=True
-    #             fcc.append(self.fallenfigures[fig].matricscoordinats[i])
-    #         if stopfigure:
-    #             del self.fallenfigures[fig]
-    #         else:
-    #             for delcoordinats in fdc:
-    #                 self.matrics[delcoordinats[0]][delcoordinats[1]]=[0,0]
-    #             for chncoordinats in fcc:
-    #                 self.matrics[chncoordinats[0]][chncoordinats[1]]=[0,color]
     def iffullrow(self):
-        # testmatrics = self.matrics
-        # for fig in range(0, len(self.fallenfigures)):
-        #     for coordinats in self.fallenfigures[fig].matricscoordinats
         pass
     def endgame(self):
         pass

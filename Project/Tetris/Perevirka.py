@@ -32,12 +32,11 @@ from Matrics import Matrics
 
 M = Matrics()
 M.randomcreate()
+
 M.figurefall()
-M.fall()
 print(M.matrics)
 M.fall()
 print(M.matrics)
-for i in range(1, 30):
+for i in range(0, 24):
     M.fall()
 print(M.matrics)
-
