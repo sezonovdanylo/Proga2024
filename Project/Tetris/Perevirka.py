@@ -1,43 +1,16 @@
-from Matrics import Matrics
+# from Matrics import Matrics
 
 
+class Perevirka():
+    def __init__(self):
+        self.a = [1]
+        self.b = []
+    def abe(self):
+        for el in self.a:
+            self.b.append(el)
 
-# def Matr(x):
-#     for i in range(0,10):
-#         for m in range(0,10):
-#             if x>5:
-#                 break
-#             x+=1
-#     return x
-# print(Matr(1))
+        self.a[0]=5
+perev = Perevirka()
+perev.abe()
 
-
-
-# l=[]
-# for el in l:
-#     print(el)
-# l = [[0, 0, 0],[1,1,1]]
-# k = l[0]
-# for el in l:
-#     el = [11]
-# print(len(l[0]))
-# print(k,l)
-
-#
-# l = [1,3,4,6,7,9,10]
-# for i in range(23, -1, -1):
-#     print(i)
-
-
-
-M = Matrics()
-M.randomcreate()
-
-M.figurefall()
-print(M.matrics)
-M.fall()
-print(M.matrics)
-for i in range(0, 24):
-    M.fall()
-print(M.matrics)
-
+print(perev.a, perev.b)

@@ -95,6 +95,8 @@ class Matrics():
             if stopfigure:
                 for cordi in coordinats:
                     self.notfallenmatrics[cordi[0]][cordi[1]] = [color]
+                    if cordi[0]<4:
+                        self.end = True
                 self.fallenfigures.pop(i)
             else:
                 for el in fdc:
@@ -103,12 +105,31 @@ class Matrics():
                     self.matrics[ell[0]][ell[1]] = [color]
                 self.fallenfigures[i][0] = fcc
 
+    def notfallenfall(self, number):
+        self.notfallenmatrics[number] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
+        for row in range(0, number):
+            for el in range(0,10):
+                if self.notfallenmatrics[row][el] != [0]:
+                    for k in self.notfallenmatrics[row][el]:
+                        self.notfallenmatrics[row+1][el] = k
+                        self.notfallenmatrics[row][el] = [0]
 
 
     def iffullrow(self):
-        pass
+        for row in range(23, -1, -1):
+            scalerow = True
+            for el in self.notfallenmatrics[row]:
+                if el == [0]:
+                    scalerow = False
+            if scalerow:
+                self.notfallenfall(row)
+                self.iffullrow()
+
+
+
     def endgame(self):
         pass
+
 
 
 
