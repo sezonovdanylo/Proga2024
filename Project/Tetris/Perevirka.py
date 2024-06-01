@@ -1,0 +1,22 @@
+from Matrics import Matrics
+
+matrics = Matrics()
+matrics.randomcreate()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+matrics.left()
+print(matrics.matrics)
+
