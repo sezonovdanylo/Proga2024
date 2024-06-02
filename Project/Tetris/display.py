@@ -100,23 +100,23 @@ class Buttons:
         screen_height = self.root.winfo_screenheight()
         button_frame.place(x=(screen_width - 150) // 2, y=screen_height - 150)
 
-        btn_up = Button(button_frame, text="↑", command=self.display.move_up, width=5, height=2)
-        btn_up.grid(row=0, column=1, padx=5, pady=5)
-
-        btn_left = Button(button_frame, text="←", command=self.display.move_left, width=5, height=2)
-        btn_left.grid(row=1, column=0, padx=5, pady=5)
-
-        btn_down = Button(button_frame, text="↓", command=self.display.move_down, width=5, height=2)
-        btn_down.grid(row=1, column=1, padx=5, pady=5)
-
-        btn_right = Button(button_frame, text="→", command=self.display.move_right, width=5, height=2)
-        btn_right.grid(row=1, column=2, padx=5, pady=5)
-
-        btn_restart = Button(button_frame, text="Restart", command=self.display.restart_game, width=10, height=2)
-        btn_restart.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
-
-        btn_close_game = Button(button_frame, text="Close", command=self.display.close_game, width=10, height=2)
-        btn_close_game.grid(row=2, column=3, columnspan=2, padx=5, pady=5)
+        # btn_up = Button(button_frame, text="↑", command=self.display.move_up, width=5, height=2)
+        # btn_up.grid(row=0, column=1, padx=5, pady=5)
+        #
+        # btn_left = Button(button_frame, text="←", command=self.display.move_left, width=5, height=2)
+        # btn_left.grid(row=1, column=0, padx=5, pady=5)
+        #
+        # btn_down = Button(button_frame, text="↓", command=self.display.move_down, width=5, height=2)
+        # btn_down.grid(row=1, column=1, padx=5, pady=5)
+        #
+        # btn_right = Button(button_frame, text="→", command=self.display.move_right, width=5, height=2)
+        # btn_right.grid(row=1, column=2, padx=5, pady=5)
+        #
+        # btn_restart = Button(button_frame, text="Restart", command=self.display.restart_game, width=10, height=2)
+        # btn_restart.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+        #
+        # btn_close_game = Button(button_frame, text="Close", command=self.display.close_game, width=10, height=2)
+        # btn_close_game.grid(row=2, column=3, columnspan=2, padx=5, pady=5)
 
 def main():
     cell_size = 30
@@ -152,6 +152,5 @@ def main():
 
     root.mainloop()
 
-if __name__ == "__main__":
-    main()
+
 
