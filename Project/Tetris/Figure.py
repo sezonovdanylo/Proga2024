@@ -17,13 +17,13 @@ class Figure:
             self.coordinats[i][0], self.coordinats[i][1] = y, 5-x
         return(Figure(self.coordinats, self.color))
 
-    def povorotLST(self):
-        a = self.coordinats
-        for i in range(0, 4):
-            x = self.coordinats[i][0]
-            y = self.coordinats[i][1]
-            self.coordinats[i][0], self.coordinats[i][1] = y, 5 - x
-        return self.coordinats
+    def povorotLST(self, lst):
+        r = []
+        for el in lst:
+            x = el[0]
+            y = el[1]
+            r.append([y, 5 - x])
+        return r
 
 
 class Figureseven(Figure):
@@ -40,14 +40,11 @@ class Figureseven(Figure):
         figures = [f1, f2, f3, f4, f5, f6, f7]
         pochatok = figures[number]
         self.gradius0= pochatok
-        self.coordinats = pochatok
-        self.povorotLST()
-        self.gradius90 = self.coordinats
-        self.povorotLST()
-        self.gradius180 = self.coordinats
-        self.povorotLST()
-        self.gradius270 = self.coordinats
-        self.gradiuslst = [self.gradius0, self.gradius90, self.gradius180, self.gradius270]
+        a = pochatok
+        b = self.povorotLST(a)
+        c = self.povorotLST(b)
+        d = self.povorotLST(c)
+        self.gradiuslst = [a, b, c, d]
         self.numberlst = 0
         self.coordinats = pochatok
         self.matricscoordinats=[[0,0], [0,0], [0,0], [0,0]]
@@ -59,7 +56,7 @@ class Figureseven(Figure):
     def right(self):
         self.mooved +=1
     def povorot(self):
-        self.numberlst+=1
+        self.numberlst += 1
         if self.numberlst == 4:
             self.numberlst = 0
         self.coordinats = self.gradiuslst[self.numberlst]
@@ -70,9 +67,7 @@ class Figureseven(Figure):
 
 if __name__ == '__main__':
 
-    a = [[4,1], [4,2], [4,3], [3,2]]
-    Fig = Figure(a, 5)
-    print(Fig.povorot().coordinats)
+    pass
 
 
 

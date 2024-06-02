@@ -1,130 +1,128 @@
-from random import randint
 from tkinter import *
-from abc import ABC, abstractmethod
+from Matrics import Matrics
 
-class MatrixDisplay(ABC):
-    def __init__(self, matrix, cell_size):
-        self.matrix = matrix
-        self.cell_size = cell_size
-
-    @abstractmethod
-    def show(self):
-        pass
-
-class TkMatrixDisplay(MatrixDisplay):
+class TkMatrixDisplay:
     def __init__(self, root, matrix, cell_size):
-        super().__init__(matrix, cell_size)
+        self.matrics = matrix
+        self.cell_size = cell_size
         self.root = root
-        self.canvas = Canvas(root, width=len(matrix[0]) * cell_size, height=len(matrix) * cell_size, borderwidth=0, highlightthickness=0, bg='white')
+        self.canvas = Canvas(root, width=len(self.matrics.matrics[0]) * cell_size, height=len(self.matrics.matrics) * cell_size, borderwidth=0, highlightthickness=0, bg='white')
         self.canvas.pack(expand=True)
         self.center_canvas()
-        self.create_buttons()
         self.score_counter = ScoreCounter(root)
         self.show()
 
     def center_canvas(self):
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
-        canvas_width = len(self.matrix[0]) * self.cell_size
-        canvas_height = len(self.matrix) * self.cell_size
+        canvas_width = len(self.matrics.matrics[0]) * self.cell_size
+        canvas_height = len(self.matrics.matrics) * self.cell_size
         x_center = (screen_width - canvas_width) // 2
         y_center = (screen_height - canvas_height) // 2
         self.canvas.place(x=x_center, y=y_center)
 
-    def create_buttons(self):
-        button_frame = Frame(self.root, bg='lightgrey')
-        screen_width = self.root.winfo_screenwidth()
-        screen_height = self.root.winfo_screenheight()
-        button_frame.place(x=(screen_width - 150) // 2, y=screen_height - 150)
-
-        btn_up = Button(button_frame, text="↑", command=self.move_up, width=5, height=2)
-        btn_up.grid(row=0, column=1, padx=5, pady=5)
-
-        btn_left = Button(button_frame, text="←", command=self.move_left, width=5, height=2)
-        btn_left.grid(row=1, column=0, padx=5, pady=5)
-
-        btn_down = Button(button_frame, text="↓", command=self.move_down, width=5, height=2)
-        btn_down.grid(row=1, column=1, padx=5, pady=5)
-
-        btn_right = Button(button_frame, text="→", command=self.move_right, width=5, height=2)
-        btn_right.grid(row=1, column=2, padx=5, pady=5)
-
     def show(self):
-        for row in range(len(self.matrix)):
-            for col in range(len(self.matrix[row])):
+        self.canvas.delete("all")  # Clear the canvas before drawing
+        for row in range(len(self.matrics.matrics)):
+            for col in range(len(self.matrics.matrics[row])):
                 x_up = col * self.cell_size
                 y_up = row * self.cell_size
-                self.canvas.create_rectangle(x_up, y_up, x_up + self.cell_size, y_up + self.cell_size, fill='white', outline='black')
-                if self.matrix[row][col][1] > 0:
-                    colors = ['lightgreen', 'blue', 'red', 'yellow', 'purple', 'green']
-                    color_index = self.matrix[row][col][1] - 1
-                    self.canvas.create_rectangle(x_up, y_up, x_up + self.cell_size, y_up + self.cell_size, fill=colors[color_index], outline='black')
+                cell_value = self.matrics.matrics[row][col][0]
+                if cell_value != 0:
+                    r, g, b = [int(val * 255) for val in cell_value]
+                    fill_color = f'#{r:02x}{g:02x}{b:02x}'
+                else:
+                    fill_color = 'white'
+                self.canvas.create_rectangle(x_up, y_up, x_up + self.cell_size, y_up + self.cell_size, fill=fill_color, outline='black')
+    def iffullrow(self):
+        if self.matrics.iffullrow():
+            self.show()
+            self.iffullrow()
+            if self.matrics.matrics[4] == [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]:
+                self.matrics.end = False
 
     def move_up(self):
-        print("Move up")
+        self.matrics.centralpovorot()
+        self.show()
 
     def move_down(self):
-        print("Move down")
+        self.matrics.figurefall()
+        self.show()
 
     def move_left(self):
-        print("Move left")
+        self.matrics.left()
+        self.show()
 
     def move_right(self):
-        print("Move right")
-
-    def on_cell_click(self, row, col):
-        points = self.matrix[row][col][1]
-        self.score_counter.update_score(points)
+        self.matrics.right()
+        self.show()
 
 class ScoreCounter:
     def __init__(self, root):
         self.root = root
         self.score = 0
-        self.label = Label(root, text="Score: 0", font=("Arial", 16), bg="lightgrey")
+        self.label = Label(root, text=f"Score: {self.score}", font=("Arial", 16), bg="black", fg="white")
         self.label.place(x=20, y=20)
 
     def update_score(self, points):
         self.score += points
-        self.label.config(text="Score: {}".format(self.score))
+        self.label.config(text=f"Score: {self.score}")
+
+class Buttons:
+    def __init__(self, root, display):
+        self.root = root
+        self.display = display
+        self.create_buttons()
+
+    def create_buttons(self):
+        button_frame = Frame(self.root, bg='black')
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        button_frame.place(x=(screen_width - 150) // 2, y=screen_height - 150)
+
+        btn_up = Button(button_frame, text="↑", command=self.display.move_up, width=5, height=2)
+        btn_up.grid(row=0, column=1, padx=5, pady=5)
+
+        btn_left = Button(button_frame, text="←", command=self.display.move_left, width=5, height=2)
+        btn_left.grid(row=1, column=0, padx=5, pady=5)
+
+        btn_down = Button(button_frame, text="↓", command=self.display.move_down, width=5, height=2)
+        btn_down.grid(row=1, column=1, padx=5, pady=5)
+
+        btn_right = Button(button_frame, text="→", command=self.display.move_right, width=5, height=2)
+        btn_right.grid(row=1, column=2, padx=5, pady=5)
 
 def main():
-    rr = randint(1, 6)
     cell_size = 30
-    matrix = [
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [1, rr], [1, rr], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [1, rr], [1, rr], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-    ]
+    matrics = Matrics()
+    matricx = matrics.matrics
+    print(matricx)
 
     root = Tk()
     root.title('Matrix Display 10x24')
     root.attributes('-fullscreen', True)
-    root.configure(background='lightgrey')
+    root.configure(background='black')
 
-    display = TkMatrixDisplay(root, matrix, cell_size)
+    display = TkMatrixDisplay(root, matrics, cell_size)
+    Buttons(root, display)
+
+    def update_label():
+        if display.matrics.ifempty():
+            display.matrics.randomcreate()
+        display.matrics.fall()
+        display.show()
+        display.iffullrow()
+        display.show()
+        display.matrics.endgame()
+        root.after(10, update_label)
+
+
+    update_label()
+
     root.mainloop()
 
 if __name__ == "__main__":
     main()
-# ghghgh
+
+
+# Я знайшов деяку кількість незначних багів які не дуже якось ломають гру я доробив так щоб кнопки не оновлювались

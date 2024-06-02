@@ -8,7 +8,7 @@ class Matrics():
         self.zeromatrics = [[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
         self.matrics = [[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
         self.notfallenmatrics = [[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]], [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
-        self.fallenfigures = []
+        self.fallenfigure = [0]
         self.score = 0
         self.end = False
         self.centralfigure = 0
@@ -46,12 +46,12 @@ class Matrics():
 
     def ochistka(self):
         for i in range(0,4):
-            for k in range(0,9):
+            for k in range(0,10):
                 self.matrics[i][k]=[0]
     def ifempty(self):
         empty = True
         for i in range(0,4):
-            for k in range(0,9):
+            for k in range(0,10):
                 if self.matrics[i][k]!=[0]:
                     empty=False
         return empty
@@ -59,7 +59,7 @@ class Matrics():
         if self.centralfigure!=0:
             self.centralfigure.povorot()
             self.ochistka()
-            self.create(self.centralfigure)
+            self.placing()
 
     def left(self):
         if self.centralfigure != 0:
@@ -73,20 +73,22 @@ class Matrics():
             self.ochistka()
             self.placing()
     def figurefall(self):
-        coordinatslst = []
-        colorlst = []
-        for coordinats in self.centralfigure.matricscoordinats:
-            coordinatslst.append(coordinats)
-        for color in self.centralfigure.color:
-            colorlst.append(color)
-        self.fallenfigures.append([coordinatslst, colorlst])
-        self.centralfigure = 0
+        if self.fallenfigure == [0] and self.centralfigure!=0:
+            coordinatslst = []
+            colorlst = []
+            for coordinats in self.centralfigure.matricscoordinats:
+                coordinatslst.append(coordinats)
+            for color in self.centralfigure.color:
+                colorlst.append(color)
+            self.fallenfigure = [coordinatslst, colorlst]
+            self.centralfigure = 0
 
 
     def fall(self):
-        for i in range(0, len(self.fallenfigures)):
-            coordinats = self.fallenfigures[i][0]
-            color = self.fallenfigures[i][1]
+        if self.fallenfigure != [0]:
+            k = []
+            coordinats = self.fallenfigure[0]
+            color = self.fallenfigure[1]
             fdc = coordinats
             fcc = []
             stopfigure = False
@@ -104,24 +106,26 @@ class Matrics():
                     self.notfallenmatrics[cordi[0]][cordi[1]] = [color]
                     if cordi[0]<4:
                         self.end = True
-                self.fallenfigures.pop(i)
+                self.fallenfigure=[0]
             else:
                 for el in fdc:
                     self.matrics[el[0]][el[1]] = [0]
                 for ell in fcc:
                     self.matrics[ell[0]][ell[1]] = [color]
-                self.fallenfigures[i][0] = fcc
+                self.fallenfigure[0] = fcc
 
     def notfallenfall(self, number):
-        self.notfallenmatrics[number] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
-        for row in range(0, number):
-            for el in range(0,10):
-                if self.notfallenmatrics[row][el] != [0]:
-                    for k in self.notfallenmatrics[row][el]:
-                        self.notfallenmatrics[row+1][el] = k
-                        self.matrics[row+1][el] = k
-                        self.notfallenmatrics[row][el] = [0]
-                        self.matrics[row][el] = [0]
+        for row in range(number, -1, -1):
+            for value in range(0,10):
+                k = []
+                if self.notfallenmatrics[row][value] != [0]:
+
+                    for element in self.notfallenmatrics[row][value]:
+                        k.append(element)
+                    self.notfallenmatrics[row+1][value] = k
+                    self.matrics[row+1][value] = k
+                    self.notfallenmatrics[row][value] = [0]
+                    self.matrics[row][value] = [0]
 
 
     def iffullrow(self):
@@ -131,13 +135,25 @@ class Matrics():
                 if el == [0]:
                     scalerow = False
             if scalerow:
+                self.notfallenmatrics[row] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
+                self.matrics[row] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
                 self.notfallenfall(row)
-                self.iffullrow()
-
-
+                return True
 
     def endgame(self):
-        pass
+        if self.end:
+
+            self.fallenfigure = [0]
+            for row in range(0, 24):
+                for value in range(0,10):
+                    self.matrics[row][value] = [0]
+                    self.notfallenmatrics[row][value] = [0]
+            self.end = False
+
+
+
+
+
 
 
 
