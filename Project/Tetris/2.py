@@ -34,38 +34,58 @@ class TkMatrixDisplay:
                 else:
                     fill_color = 'white'
                 self.canvas.create_rectangle(x_up, y_up, x_up + self.cell_size, y_up + self.cell_size, fill=fill_color, outline='black')
+
     def iffullrow(self):
         if self.matrics.iffullrow():
             self.show()
             self.iffullrow()
+            self.score_counter.update_score(10)
             if self.matrics.matrics[4] == [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]:
                 self.matrics.end = False
 
-    def move_up(self):
+    def move_up(self, event=None):
         self.matrics.centralpovorot()
         self.show()
 
-    def move_down(self):
+    def move_down(self, event=None):
         self.matrics.figurefall()
         self.show()
 
-    def move_left(self):
+    def move_left(self, event=None):
         self.matrics.left()
         self.show()
 
-    def move_right(self):
+    def move_right(self, event=None):
         self.matrics.right()
         self.show()
+
+    def restart_game(self, event=None):
+        self.matrics = Matrics()
+        self.score_counter.reset_score()
+        self.show()
+
+    def close_game(self, event=None):
+        self.root.destroy()
 
 class ScoreCounter:
     def __init__(self, root):
         self.root = root
         self.score = 0
+        self.max_score = 0
         self.label = Label(root, text=f"Score: {self.score}", font=("Arial", 16), bg="black", fg="white")
         self.label.place(x=20, y=20)
+        self.max_score_label = Label(root, text=f"Max Score: {self.max_score}", font=("Arial", 16), bg="black", fg="white")
+        self.max_score_label.place(x=20, y=50)
 
     def update_score(self, points):
         self.score += points
+        self.label.config(text=f"Score: {self.score}")
+        if self.score > self.max_score:
+            self.max_score = self.score
+            self.max_score_label.config(text=f"Max Score: {self.max_score}")
+
+    def reset_score(self):
+        self.score = 0
         self.label.config(text=f"Score: {self.score}")
 
 class Buttons:
@@ -92,6 +112,12 @@ class Buttons:
         btn_right = Button(button_frame, text="→", command=self.display.move_right, width=5, height=2)
         btn_right.grid(row=1, column=2, padx=5, pady=5)
 
+        btn_restart = Button(button_frame, text="Restart", command=self.display.restart_game, width=10, height=2)
+        btn_restart.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+
+        btn_close_game = Button(button_frame, text="Close", command=self.display.close_game, width=10, height=2)
+        btn_close_game.grid(row=2, column=3, columnspan=2, padx=5, pady=5)
+
 def main():
     cell_size = 30
     matrics = Matrics()
@@ -106,16 +132,21 @@ def main():
     display = TkMatrixDisplay(root, matrics, cell_size)
     Buttons(root, display)
 
+    root.bind('<Up>', display.move_up)
+    root.bind('<Down>', display.move_down)
+    root.bind('<Left>', display.move_left)
+    root.bind('<Right>', display.move_right)
+    root.bind('<Escape>', display.close_game)
+    root.bind('<Return>', display.restart_game)
+
     def update_label():
         if display.matrics.ifempty():
             display.matrics.randomcreate()
         display.matrics.fall()
         display.show()
         display.iffullrow()
-        display.show()
         display.matrics.endgame()
         root.after(10, update_label)
-
 
     update_label()
 
@@ -124,5 +155,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-# Я знайшов деяку кількість незначних багів які не дуже якось ломають гру я доробив так щоб кнопки не оновлювались
